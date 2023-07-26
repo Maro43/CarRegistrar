@@ -15,12 +15,12 @@ public class VehicleDto {
     private final int yearRegistration;
     private final boolean valid;
 
-    public VehicleDto(VehicleEntity vehicleEntity) {
-        this.id = vehicleEntity.getId();
-        this.model = vehicleEntity.getModel();
-        this.series = vehicleEntity.getSeries();
-        this.yearProduction = vehicleEntity.getYearProduction();
-        this.yearRegistration = vehicleEntity.getYearRegistration();
-        this.valid = vehicleEntity.isValid();
+    public VehicleDto(String id, String model, String series, int yearProduction, int yearRegistration, boolean valid) {
+        this.id = id;
+        this.model = model;
+        this.series = series;
+        this.yearProduction = yearProduction;
+        this.yearRegistration = yearRegistration;
+        this.valid = valid;
     }
-}
+    }
