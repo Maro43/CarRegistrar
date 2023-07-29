@@ -17,8 +17,18 @@ public class VehicleController {
         return vehicleService.getVehicleById(id);
     }
 
+    @PutMapping
+    public VehicleDto updateVehicle(VehicleDto vehicleDto){
+        return vehicleService.updateVehicle(vehicleDto);
+    }
+
     @PostMapping("/post")
     public VehicleDto post(VehicleDto vehicleDto){
         return vehicleService.saveVehicle(vehicleDto);
+    }
+
+    @DeleteMapping
+    public void deleteVehicleById(String id){
+        vehicleService.deleteVehicle(id);
     }
 }

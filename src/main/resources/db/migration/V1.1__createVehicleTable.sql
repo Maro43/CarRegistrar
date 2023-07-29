@@ -7,3 +7,5 @@ CREATE TABLE registration_vehicle
     year_registration INTEGER,
     valid             BOOLEAN
 );
+
+CREATE UNIQUE INDEX idx_registration_vehicle_id ON car_api.registration_vehicle (id);

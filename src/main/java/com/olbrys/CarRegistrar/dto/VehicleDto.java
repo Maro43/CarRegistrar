@@ -23,4 +23,5 @@ public class VehicleDto {
         this.yearRegistration = yearRegistration;
         this.valid = valid;
     }
-    }
+
+}

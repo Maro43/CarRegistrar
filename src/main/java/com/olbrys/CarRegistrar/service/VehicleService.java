@@ -7,4 +7,8 @@ public interface VehicleService {
     VehicleDto getVehicleById(String id);
 
     VehicleDto saveVehicle(VehicleDto vehicleDto);
+
+    VehicleDto updateVehicle(VehicleDto vehicleDto);
+
+    void deleteVehicle(String id);
 }
