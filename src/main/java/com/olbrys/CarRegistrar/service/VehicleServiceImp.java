@@ -55,6 +55,5 @@ public class VehicleServiceImp implements VehicleService {
     public void deleteVehicle(String id) {
         VehicleEntity vehicleEntity = vehicleRepository.findById(id).orElseThrow();
         vehicleRepository.deleteById(id);
-
     }
 }
