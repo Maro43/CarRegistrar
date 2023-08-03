@@ -23,7 +23,7 @@ public class VehicleController {
     }
 
     @PostMapping("/post")
-    public VehicleDto post(VehicleDto vehicleDto){
+    public VehicleDto saveVehicle(VehicleDto vehicleDto){
         return vehicleService.saveVehicle(vehicleDto);
     }
 
