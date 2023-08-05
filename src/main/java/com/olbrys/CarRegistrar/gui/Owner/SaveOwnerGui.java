@@ -1,4 +1,4 @@
-package com.olbrys.CarRegistrar.gui;
+package com.olbrys.CarRegistrar.gui.Owner;
 
 import com.olbrys.CarRegistrar.dto.OwnerDto;
 import com.olbrys.CarRegistrar.service.OwnerService;
@@ -10,7 +10,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 @Route("/Save_Owner")
-public class OwnerGui extends VerticalLayout {
+public class SaveOwnerGui extends VerticalLayout {
 
     private final OwnerService ownerService;
 
@@ -19,7 +19,7 @@ public class OwnerGui extends VerticalLayout {
     private final Checkbox validLicenceCheckbox;
     private final Button saveButton;
 
-    public OwnerGui (OwnerService ownerService) {
+    public SaveOwnerGui(OwnerService ownerService) {
         this.ownerService = ownerService;
 
         firstNameField = new TextField("Podaj Imię");
