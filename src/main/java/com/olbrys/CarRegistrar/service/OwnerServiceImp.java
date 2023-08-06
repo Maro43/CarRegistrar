@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Primary
 @AllArgsConstructor
@@ -16,8 +18,13 @@ public class OwnerServiceImp implements OwnerService {
 
     @Override
     public OwnerDto findById(Long id) {
-        OwnerEntity ownerEntity = ownerRepository.findById(id).orElseThrow();
+        Optional<OwnerEntity> ownerEntityOptional = ownerRepository.findById(id);
+        if (ownerEntityOptional.isPresent()) {
+            OwnerEntity ownerEntity = ownerEntityOptional.get();
         return new OwnerDto(ownerEntity.getFirstName(), ownerEntity.getLastName(), ownerEntity.isValidLicence());
+        } else {
+            return null;
+        }
     }
 
     @Override
