@@ -1,6 +1,7 @@
 package com.olbrys.CarRegistrar.gui.Owner;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
@@ -8,8 +9,10 @@ import com.vaadin.flow.router.Route;
 public class OwnerGui extends VerticalLayout implements NavigateToGui {
 
     public OwnerGui() {
+        Label label = new Label("Menu wyboru opcji Owner");
         Button saveOwnerButton = new Button("Save Owner", buttonClickEvent -> navigateToSaveOwner());
+        Button getOwnerButton = new Button("Check Owner", buttonClickEvent -> navigateToGetOwner());
 
-        add(saveOwnerButton);
+        add(label, saveOwnerButton, getOwnerButton);
     }
 }

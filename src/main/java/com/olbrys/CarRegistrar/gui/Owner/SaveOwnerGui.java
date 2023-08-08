@@ -10,14 +10,13 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 @Route("/Save_Owner")
-public class SaveOwnerGui extends VerticalLayout {
+public class SaveOwnerGui extends VerticalLayout implements NavigateToGui {
 
     private final OwnerService ownerService;
 
     private final TextField firstNameField;
     private final TextField lastNameField;
     private final Checkbox validLicenceCheckbox;
-    private final Button saveButton;
 
     public SaveOwnerGui(OwnerService ownerService) {
         this.ownerService = ownerService;
@@ -25,22 +24,21 @@ public class SaveOwnerGui extends VerticalLayout {
         firstNameField = new TextField("Podaj Imię");
         lastNameField = new TextField("Podaj Nazwisko");
         validLicenceCheckbox = new Checkbox("Czy masz ważne prawo jazdy");
-        saveButton = new Button("Zapisz do bazy dancyh");
-        saveButton.addClickListener(buttonClickEvent -> saveOwner());
+        Button saveButton = new Button("Zapisz do bazy dancyh", buttonClickEvent -> saveOwner());
+        Button ownerGuiButton = new Button("Powrót do Owner Menu", buttonClickEvent -> navigateToOwnerGui());
 
-        add(firstNameField,lastNameField,validLicenceCheckbox,saveButton);
+        add(firstNameField, lastNameField, validLicenceCheckbox, saveButton, ownerGuiButton);
     }
 
-    private void saveOwner(){
+    private void saveOwner() {
         String firstName = firstNameField.getValue();
         String lastName = lastNameField.getValue();
-        boolean validLicence= validLicenceCheckbox.getValue();
+        boolean validLicence = validLicenceCheckbox.getValue();
 
-        OwnerDto ownerDto = new OwnerDto(firstName,lastName,validLicence);
-        OwnerDto savedOwner= ownerService.saveOwner(ownerDto);
+        OwnerDto ownerDto = new OwnerDto(firstName, lastName, validLicence);
+        OwnerDto savedOwner = ownerService.saveOwner(ownerDto);
 
         Notification.show("Owner saved: " + savedOwner.getFirstName() + " " + savedOwner.getLastName(),
                 3000, Notification.Position.BOTTOM_CENTER);
     }
-
 }

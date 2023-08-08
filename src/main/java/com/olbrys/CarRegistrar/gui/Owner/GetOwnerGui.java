@@ -15,14 +15,13 @@ public class GetOwnerGui extends VerticalLayout {
 
     private final TextArea respond;
     private final TextField idSearch;
-    private final Button search;
 
     public GetOwnerGui(OwnerService ownerService) {
 
         this.ownerService = ownerService;
 
         idSearch = new TextField("Podaj ID Właściciela");
-        search = new Button("Szukaj");
+        Button search = new Button("Szukaj");
         search.addClickListener(buttonClickEvent -> searchById());
         respond = new TextArea("Dane:");
 
