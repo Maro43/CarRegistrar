@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -17,7 +18,7 @@ public class OwnerServiceImp implements OwnerService {
     private final OwnerJpaRepository ownerRepository;
 
     @Override
-    public OwnerDto findById(Long id) {
+    public OwnerDto getOwnerById(Long id) {
         Optional<OwnerEntity> ownerEntityOptional = ownerRepository.findById(id);
         if (ownerEntityOptional.isPresent()) {
             OwnerEntity ownerEntity = ownerEntityOptional.get();
@@ -42,7 +43,12 @@ public class OwnerServiceImp implements OwnerService {
 
     @Override
     public void deleteOwner(Long id) {
-        OwnerEntity ownerEntity = ownerRepository.findById(id).orElseThrow();
-        ownerRepository.deleteById(id);
+        Optional<OwnerEntity> ownerOptional = ownerRepository.findById(id);
+
+        if (ownerOptional.isPresent()) {
+            ownerRepository.deleteById(id);
+        } else {
+            throw new NoSuchElementException("Właściciel o podanym ID nie istnieje");
+        }
     }
 }

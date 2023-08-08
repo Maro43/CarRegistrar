@@ -4,7 +4,7 @@ import com.olbrys.CarRegistrar.dto.OwnerDto;
 
 public interface OwnerService {
 
-    OwnerDto findById(Long id);
+    OwnerDto getOwnerById(Long id);
 
     OwnerDto saveOwner(OwnerDto ownerDto);
 

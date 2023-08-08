@@ -12,7 +12,7 @@ public interface NavigateToGui {
         UI.getCurrent().navigate(OwnerGui.class);
     }
 
-    default void navigateToGetOwner() {
-        UI.getCurrent().navigate(GetOwnerGui.class);
+    default void navigateToCheckOwner() {
+        UI.getCurrent().navigate(CheckOwnerGui.class);
     }
 }

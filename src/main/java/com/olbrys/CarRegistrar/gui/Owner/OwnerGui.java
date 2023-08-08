@@ -11,8 +11,8 @@ public class OwnerGui extends VerticalLayout implements NavigateToGui {
     public OwnerGui() {
         Label label = new Label("Menu wyboru opcji Owner");
         Button saveOwnerButton = new Button("Save Owner", buttonClickEvent -> navigateToSaveOwner());
-        Button getOwnerButton = new Button("Check Owner", buttonClickEvent -> navigateToGetOwner());
+        Button chckOwnerButton = new Button("Check Owner", buttonClickEvent -> navigateToCheckOwner());
 
-        add(label, saveOwnerButton, getOwnerButton);
+        add(label, saveOwnerButton, chckOwnerButton);
     }
 }

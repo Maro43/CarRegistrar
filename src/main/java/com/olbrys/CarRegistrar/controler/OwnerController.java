@@ -14,7 +14,7 @@ public class OwnerController {
 
     @GetMapping
     public OwnerDto getOwnerById(Long id){
-        return ownerService.findById(id);
+        return ownerService.getOwnerById(id);
     }
 
     @PostMapping
