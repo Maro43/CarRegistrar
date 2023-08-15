@@ -8,7 +8,7 @@ public interface OwnerService {
 
     OwnerDto saveOwner(OwnerDto ownerDto);
 
-    OwnerDto updateOwner(OwnerDto ownerDto);
+    OwnerDto updateOwner(OwnerDto ownerDto, Long id);
 
     void deleteOwner(Long id);
 }

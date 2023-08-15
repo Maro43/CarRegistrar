@@ -23,8 +23,8 @@ public class OwnerController {
     }
 
     @PutMapping
-    public OwnerDto updateOwner(OwnerDto ownerDto){
-        return ownerService.updateOwner(ownerDto);
+    public OwnerDto updateOwner(OwnerDto ownerDto, Long id){
+        return ownerService.updateOwner(ownerDto, id);
     }
 
     @DeleteMapping

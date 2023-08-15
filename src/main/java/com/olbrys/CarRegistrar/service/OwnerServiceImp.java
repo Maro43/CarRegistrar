@@ -19,13 +19,8 @@ public class OwnerServiceImp implements OwnerService {
 
     @Override
     public OwnerDto getOwnerById(Long id) {
-        Optional<OwnerEntity> ownerEntityOptional = ownerRepository.findById(id);
-        if (ownerEntityOptional.isPresent()) {
-            OwnerEntity ownerEntity = ownerEntityOptional.get();
-        return new OwnerDto(ownerEntity.getFirstName(), ownerEntity.getLastName(), ownerEntity.isValidLicence());
-        } else {
-            return null;
-        }
+        OwnerEntity ownerEntity = ownerRepository.findById(id).orElse(null);
+        return ownerEntity != null ? new OwnerDto(ownerEntity) : null;
     }
 
     @Override
@@ -33,11 +28,12 @@ public class OwnerServiceImp implements OwnerService {
         OwnerEntity ownerEntity = new OwnerEntity(ownerDto.getFirstName(),
                 ownerDto.getLastName(), ownerDto.isValidLicence());
         OwnerEntity save = ownerRepository.save(ownerEntity);
-        return new OwnerDto(save.getFirstName(), save.getLastName(), save.isValidLicence());
+        return new OwnerDto(save);
     }
 
     @Override
-    public OwnerDto updateOwner(OwnerDto ownerDto) {
+    public OwnerDto updateOwner(OwnerDto ownerDto, Long id) {
+        OwnerEntity ownerEntity = ownerRepository.findById(id).orElse(null);
         return null;
     }
 

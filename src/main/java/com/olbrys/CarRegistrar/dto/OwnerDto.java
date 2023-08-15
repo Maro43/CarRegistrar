@@ -1,5 +1,6 @@
 package com.olbrys.CarRegistrar.dto;
 
+import com.olbrys.CarRegistrar.entity.OwnerEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,5 +18,11 @@ public class OwnerDto {
         this.firstName = firstName;
         this.lastName = lastName;
         this.validLicence = validLicence;
+    }
+
+    public OwnerDto(OwnerEntity ownerEntity) {
+        this.firstName = ownerEntity.getFirstName();
+        this.lastName = ownerEntity.getLastName();
+        this.validLicence = ownerEntity.isValidLicence();
     }
 }
