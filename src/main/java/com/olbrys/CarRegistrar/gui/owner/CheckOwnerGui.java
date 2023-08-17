@@ -1,4 +1,4 @@
-package com.olbrys.CarRegistrar.gui.Owner;
+package com.olbrys.CarRegistrar.gui.owner;
 
 import com.olbrys.CarRegistrar.controler.OwnerController;
 import com.olbrys.CarRegistrar.dto.OwnerDto;
@@ -11,8 +11,10 @@ import com.vaadin.flow.router.Route;
 
 import java.util.NoSuchElementException;
 
+import static com.olbrys.CarRegistrar.gui.owner.NavigationGui.navigateToOwnerGui;
+
 @Route("/Get_Owner")
-public class CheckOwnerGui extends VerticalLayout implements NavigateToGui {
+public class CheckOwnerGui extends VerticalLayout {
 
     private final OwnerController ownerController;
 
@@ -24,6 +26,7 @@ public class CheckOwnerGui extends VerticalLayout implements NavigateToGui {
         this.ownerController = ownerController;
 
         idSearch = new TextField("Podaj ID Właściciela");
+//        todo add Validation
         idSearch.addKeyDownListener(Key.ENTER, keyDownEvent -> searchById());
         Button search = new Button("Szukaj", buttonClickEvent -> searchById());
         respond = new TextArea("Dane:");
@@ -35,24 +38,29 @@ public class CheckOwnerGui extends VerticalLayout implements NavigateToGui {
     }
 
     private void searchById() {
+        Long ownerId = retrieveId(idSearch.getValue());
+
+        OwnerDto ownerDto = ownerController.getOwnerById(ownerId);
+
+        if (ownerDto != null) {
+            respond.setValue("Imie: " + ownerDto.getFirstName() +
+                    "\nNazwisko: " + ownerDto.getLastName() +
+                    "\nWażne prawo jazdy: " + ownerDto.isValidLicence());
+            delete.setVisible(true);
+        } else {
+            respond.setValue("Nie znaleziono właściciela o podanym ID: " + ownerId);
+            delete.setVisible(false);
+        }
+    }
+
+    private Long retrieveId(String value) {
         try {
-            Long ownerId = Long.parseLong(idSearch.getValue());
-            OwnerDto ownerDto = ownerController.getOwnerById(ownerId);
-
-            if (ownerDto != null) {
-                respond.setValue("Imie: " + ownerDto.getFirstName() +
-                        "\nNazwisko: " + ownerDto.getLastName() +
-                        "\nWażne prawo jazdy: " + ownerDto.isValidLicence());
-                delete.setVisible(true);
-            } else {
-                respond.setValue("Nie znaleziono właściciela o podanym ID: " + ownerId);
-                delete.setVisible(false);
-            }
-
+            return Long.parseLong(value);
         } catch (NumberFormatException e) {
             respond.setValue("Nie poprawne wprowadzenie ID. Podaj numer ID");
             delete.setVisible(false);
         }
+        return null;
     }
 
     private void deleteOwnerById() {

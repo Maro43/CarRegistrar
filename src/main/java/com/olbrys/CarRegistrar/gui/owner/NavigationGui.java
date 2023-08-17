@@ -1,18 +1,18 @@
-package com.olbrys.CarRegistrar.gui.Owner;
+package com.olbrys.CarRegistrar.gui.owner;
 
 import com.vaadin.flow.component.UI;
 
-public interface NavigateToGui {
+public class NavigationGui {
 
-    default void navigateToSaveOwner() {
+    public static void navigateToSaveOwner() {
         UI.getCurrent().navigate(SaveOwnerGui.class);
     }
 
-    default void navigateToOwnerGui() {
+    public static void navigateToOwnerGui() {
         UI.getCurrent().navigate(OwnerGui.class);
     }
 
-    default void navigateToCheckOwner() {
+    public static void navigateToCheckOwner() {
         UI.getCurrent().navigate(CheckOwnerGui.class);
     }
 }

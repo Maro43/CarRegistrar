@@ -1,4 +1,4 @@
-package com.olbrys.CarRegistrar.gui.Owner;
+package com.olbrys.CarRegistrar.gui.owner;
 
 import com.olbrys.CarRegistrar.controler.OwnerController;
 import com.olbrys.CarRegistrar.dto.OwnerDto;
@@ -10,8 +10,10 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
+import static com.olbrys.CarRegistrar.gui.owner.NavigationGui.navigateToOwnerGui;
+
 @Route("/Save_Owner")
-public class SaveOwnerGui extends VerticalLayout implements NavigateToGui {
+public class SaveOwnerGui extends VerticalLayout {
 
     private final OwnerController ownerController;
 
