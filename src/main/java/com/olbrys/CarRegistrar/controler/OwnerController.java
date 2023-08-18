@@ -13,22 +13,27 @@ public class OwnerController {
     private final OwnerService ownerService;
 
     @GetMapping
-    public OwnerDto getOwnerById(Long id){
+    public OwnerDto getOwnerById(Long id) {
         return ownerService.getOwnerById(id);
     }
 
+    @GetMapping("/findbyname")
+    public Long getOwnerIdByName(OwnerDto ownerDto){
+        return ownerService.getOwnerIdByName(ownerDto);
+    }
+
     @PostMapping
-    public OwnerDto saveOwner(OwnerDto ownerDto){
+    public OwnerDto saveOwner(OwnerDto ownerDto) {
         return ownerService.saveOwner(ownerDto);
     }
 
     @PutMapping
-    public OwnerDto updateOwner(OwnerDto ownerDto, Long id){
+    public OwnerDto updateOwner(OwnerDto ownerDto, Long id) {
         return ownerService.updateOwner(ownerDto, id);
     }
 
     @DeleteMapping
-    public void deleteOwner(Long id){
+    public void deleteOwner(Long id) {
         ownerService.deleteOwner(id);
     }
 }

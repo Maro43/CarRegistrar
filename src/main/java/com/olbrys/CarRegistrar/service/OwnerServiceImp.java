@@ -24,6 +24,12 @@ public class OwnerServiceImp implements OwnerService {
     }
 
     @Override
+    public Long getOwnerIdByName(OwnerDto ownerDto) {
+        OwnerEntity ownerEntity = ownerRepository.findByFirstNameAndLastName(ownerDto.getFirstName(), ownerDto.getLastName());
+        return ownerEntity != null ? ownerEntity.getId() : null;
+    }
+
+    @Override
     public OwnerDto saveOwner(OwnerDto ownerDto) {
         OwnerEntity ownerEntity = new OwnerEntity(ownerDto.getFirstName(),
                 ownerDto.getLastName(), ownerDto.isValidLicence());

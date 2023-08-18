@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OwnerJpaRepository extends JpaRepository <OwnerEntity,Long> {
+    OwnerEntity findByFirstNameAndLastName(String firstName, String lastName);
 }

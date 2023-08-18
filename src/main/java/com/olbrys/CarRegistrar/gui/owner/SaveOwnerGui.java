@@ -43,8 +43,12 @@ public class SaveOwnerGui extends VerticalLayout {
         OwnerDto ownerDto = new OwnerDto(firstName, lastName, validLicence);
         OwnerDto savedOwner = ownerController.saveOwner(ownerDto);
 
-        resultArea.setValue("Dodano użytkownika: " + savedOwner.getFirstName() + " " + savedOwner.getLastName());
-        Notification.show("Owner saved: " + savedOwner.getFirstName() + " " + savedOwner.getLastName(),
+        Long ownerId = ownerController.getOwnerIdByName(ownerDto);
+
+        resultArea.setValue("Dodano użytkownika:\n"
+                + savedOwner.getFirstName() + " " + savedOwner.getLastName() + "\n" +
+                "Twoje ID: " + ownerId);
+        Notification.show("Owner saved: " + savedOwner.getFirstName() + " " + savedOwner.getLastName() + "Id: " + ownerId,
                 3000, Notification.Position.TOP_CENTER);
     }
 }

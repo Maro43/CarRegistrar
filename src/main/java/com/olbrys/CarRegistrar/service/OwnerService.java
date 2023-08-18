@@ -6,6 +6,8 @@ public interface OwnerService {
 
     OwnerDto getOwnerById(Long id);
 
+    Long getOwnerIdByName(OwnerDto ownerDto);
+
     OwnerDto saveOwner(OwnerDto ownerDto);
 
     OwnerDto updateOwner(OwnerDto ownerDto, Long id);
