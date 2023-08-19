@@ -5,6 +5,8 @@ import com.olbrys.CarRegistrar.service.OwnerService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/owner")
@@ -20,6 +22,11 @@ public class OwnerController {
     @GetMapping("/findbyname")
     public Long getOwnerIdByName(OwnerDto ownerDto){
         return ownerService.getOwnerIdByName(ownerDto);
+    }
+
+    @GetMapping("/getlist")
+    public List<OwnerDto> getList(){
+        return ownerService.getList();
     }
 
     @PostMapping
