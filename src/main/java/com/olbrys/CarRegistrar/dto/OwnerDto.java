@@ -1,15 +1,15 @@
 package com.olbrys.CarRegistrar.dto;
 
 import com.olbrys.CarRegistrar.entity.OwnerEntity;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
 @NoArgsConstructor
 public class OwnerDto {
 
+    @Setter(AccessLevel.NONE)
+    private Long id;
     private String firstName;
     private String lastName;
     private boolean validLicence;
@@ -21,6 +21,7 @@ public class OwnerDto {
     }
 
     public OwnerDto(OwnerEntity ownerEntity) {
+        this.id=ownerEntity.getId();
         this.firstName = ownerEntity.getFirstName();
         this.lastName = ownerEntity.getLastName();
         this.validLicence = ownerEntity.isValidLicence();
