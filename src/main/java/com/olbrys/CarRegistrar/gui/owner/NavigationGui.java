@@ -15,4 +15,8 @@ public class NavigationGui {
     public static void navigateToCheckOwner() {
         UI.getCurrent().navigate(CheckOwnerGui.class);
     }
+
+    public static void navigateToOwnerList() {
+        UI.getCurrent().navigate(OwnerListGui.class);
+    }
 }

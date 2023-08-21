@@ -5,17 +5,17 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-import static com.olbrys.CarRegistrar.gui.owner.NavigationGui.navigateToCheckOwner;
-import static com.olbrys.CarRegistrar.gui.owner.NavigationGui.navigateToSaveOwner;
+import static com.olbrys.CarRegistrar.gui.owner.NavigationGui.*;
 
 @Route
 public class OwnerGui extends VerticalLayout {
 
     public OwnerGui() {
         Label label = new Label("Menu wyboru opcji Owner");
-        Button saveOwnerButton = new Button("Save Owner", buttonClickEvent -> navigateToSaveOwner());
-        Button checkOwnerButton = new Button("Check Owner", buttonClickEvent -> navigateToCheckOwner());
+        Button listOwnerButton = new Button("Lista Właścicieli", buttonClickEvent -> navigateToOwnerList());
+        Button saveOwnerButton = new Button("Zapisz Właściciela", buttonClickEvent -> navigateToSaveOwner());
+        Button checkOwnerButton = new Button("Opcje Właściciela", buttonClickEvent -> navigateToCheckOwner());
 
-        add(label, saveOwnerButton, checkOwnerButton);
+        add(label, listOwnerButton, saveOwnerButton, checkOwnerButton);
     }
 }
