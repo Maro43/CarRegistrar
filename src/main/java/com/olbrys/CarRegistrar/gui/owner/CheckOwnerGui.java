@@ -4,6 +4,7 @@ import com.olbrys.CarRegistrar.controler.OwnerController;
 import com.olbrys.CarRegistrar.dto.OwnerDto;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
@@ -21,6 +22,10 @@ public class CheckOwnerGui extends VerticalLayout {
     private final TextArea respond;
     private final TextField idSearch;
     private final Button delete;
+    private final Button update;
+    private final Checkbox validLicenceCheckbox;
+    private final TextField firstNameField;
+    private final TextField lastNameField;
 
     public CheckOwnerGui(OwnerController ownerController) {
         this.ownerController = ownerController;
@@ -32,9 +37,15 @@ public class CheckOwnerGui extends VerticalLayout {
         respond = new TextArea("Dane:");
         delete = new Button("Usuń", buttonClickEvent -> deleteOwnerById());
         delete.setVisible(false);
+        firstNameField = new TextField("Imię");
+        lastNameField = new TextField("Nazwisko");
+        validLicenceCheckbox = new Checkbox("Ważne prawo jazdy");
+        update = new Button("Aktualizuj Dane", buttonClickEvent -> updateOwner());
+        update.setVisible(false);
+
         Button ownerGuiButton = new Button("Powrót do menu", buttonClickEvent -> navigateToOwnerGui());
 
-        add(idSearch, search, respond, delete, ownerGuiButton);
+        add(idSearch, search, respond, delete, update, firstNameField, lastNameField, validLicenceCheckbox, ownerGuiButton);
     }
 
     private void searchById() {
@@ -47,6 +58,7 @@ public class CheckOwnerGui extends VerticalLayout {
                     "\nNazwisko: " + ownerDto.getLastName() +
                     "\nWażne prawo jazdy: " + ownerDto.isValidLicence());
             delete.setVisible(true);
+            update.setVisible(true);
         } else {
             respond.setValue("Nie znaleziono właściciela o podanym ID: " + ownerId);
             delete.setVisible(false);
@@ -68,6 +80,24 @@ public class CheckOwnerGui extends VerticalLayout {
             Long ownerId = Long.parseLong(idSearch.getValue());
             ownerController.deleteOwner(ownerId);
             respond.setValue("Usunięto właściciela o ID: " + ownerId);
+        } catch (NumberFormatException e) {
+            respond.setValue("Niepoprawne wprowadzenie ID. Podaj numer ID");
+        } catch (NoSuchElementException e) {
+            respond.setValue("Właściciel o podanym ID nie istnieje");
+        }
+    }
+
+    private void updateOwner() {
+        try {
+            Long ownerId = Long.parseLong(idSearch.getValue());
+
+            String newFirstName = firstNameField.getValue();
+            String newLastName = lastNameField.getValue();
+            boolean newValidLicence = validLicenceCheckbox.getValue();
+
+            OwnerDto updatedOwner = ownerController.updateOwner(new OwnerDto(newFirstName, newLastName, newValidLicence), ownerId);
+
+            respond.setValue("Zaktualizowano właściciela o ID: " + ownerId);
         } catch (NumberFormatException e) {
             respond.setValue("Niepoprawne wprowadzenie ID. Podaj numer ID");
         } catch (NoSuchElementException e) {

@@ -43,7 +43,7 @@ public class SaveOwnerGui extends VerticalLayout {
         OwnerDto ownerDto = new OwnerDto(firstName, lastName, validLicence);
         OwnerDto savedOwner = ownerController.saveOwner(ownerDto);
 
-        Long ownerId = ownerController.getOwnerIdByName(ownerDto);
+        Long ownerId = savedOwner.getId();
 
         resultArea.setValue("Dodano użytkownika:\n"
                 + savedOwner.getFirstName() + " " + savedOwner.getLastName() + "\n" +
