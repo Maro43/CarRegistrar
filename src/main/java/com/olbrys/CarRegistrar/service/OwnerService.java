@@ -12,6 +12,10 @@ public interface OwnerService {
 
     List <OwnerDto> getList();
 
+    List <OwnerDto> getSortedByNameList();
+
+    List <OwnerDto> getSortedByIdList();
+
     OwnerDto saveOwner(OwnerDto ownerDto);
 
     OwnerDto updateOwner(OwnerDto ownerDto, Long id);

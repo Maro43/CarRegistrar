@@ -29,6 +29,16 @@ public class OwnerController {
         return ownerService.getList();
     }
 
+    @GetMapping("/getlistsortedbyname")
+    public List<OwnerDto> getSortedByNameList(){
+        return ownerService.getSortedByNameList();
+    }
+
+    @GetMapping("/getlistsortedbyid")
+    public List<OwnerDto> getSortedByIdList(){
+        return ownerService.getSortedByIdList();
+    }
+
     @PostMapping
     public OwnerDto saveOwner(OwnerDto ownerDto) {
         return ownerService.saveOwner(ownerDto);

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -34,6 +35,22 @@ public class OwnerServiceImp implements OwnerService {
     public List<OwnerDto> getList() {
         return ownerRepository.findAll().stream()
                 .map(OwnerDto::new)
+                .toList();
+    }
+
+    @Override
+    public List<OwnerDto> getSortedByNameList() {
+        return ownerRepository.findAll().stream()
+                .map(OwnerDto::new)
+                .sorted(Comparator.comparing(OwnerDto::getLastName))
+                .toList();
+    }
+
+    @Override
+    public List<OwnerDto> getSortedByIdList() {
+        return ownerRepository.findAll().stream()
+                .map(OwnerDto::new)
+                .sorted(Comparator.comparingLong(OwnerDto::getId))
                 .toList();
     }
 

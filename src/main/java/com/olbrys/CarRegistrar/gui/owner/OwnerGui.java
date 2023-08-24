@@ -7,7 +7,7 @@ import com.vaadin.flow.router.Route;
 
 import static com.olbrys.CarRegistrar.gui.owner.NavigationGui.*;
 
-@Route
+@Route("/")
 public class OwnerGui extends VerticalLayout {
 
     public OwnerGui() {
