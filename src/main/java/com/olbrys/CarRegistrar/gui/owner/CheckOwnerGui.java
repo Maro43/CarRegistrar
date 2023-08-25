@@ -29,7 +29,6 @@ public class CheckOwnerGui extends VerticalLayout {
     private TextField lastNameField;
     private Checkbox validLicenceCheckbox;
     private Button update;
-    private String previousLastNameValue = null;
 
     public CheckOwnerGui(OwnerController ownerController) {
         this.ownerController = ownerController;
