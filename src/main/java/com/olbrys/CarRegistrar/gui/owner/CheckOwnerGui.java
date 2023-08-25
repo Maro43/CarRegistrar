@@ -23,11 +23,13 @@ public class CheckOwnerGui extends VerticalLayout {
     private final TextArea respond;
     private final TextField idSearch;
     private final HorizontalLayout buttonContainer;
-    private Checkbox validLicenceCheckbox;
+    private final VerticalLayout centerLayout;
+    private final Button ownerGuiButton;
     private TextField firstNameField;
     private TextField lastNameField;
+    private Checkbox validLicenceCheckbox;
     private Button update;
-    private final Button ownerGuiButton;
+    private String previousLastNameValue = null;
 
     public CheckOwnerGui(OwnerController ownerController) {
         this.ownerController = ownerController;
@@ -37,25 +39,32 @@ public class CheckOwnerGui extends VerticalLayout {
         idSearch.addKeyDownListener(Key.ENTER, keyDownEvent -> searchById());
         Button search = new Button("Szukaj", buttonClickEvent -> searchById());
         respond = new TextArea("Dane:");
+        respond.setReadOnly(true);
         Button delete = new Button("Usuń", buttonClickEvent -> deleteOwnerById());
         Button updateOn = new Button("Aktualizuj Dane", buttonClickEvent -> addUpdate());
         buttonContainer = new HorizontalLayout(delete, updateOn);
         buttonContainer.setVisible(false);
         ownerGuiButton = new Button("Powrót do menu", buttonClickEvent -> navigateToOwnerGui());
 
-        add(idSearch, search, respond, buttonContainer, ownerGuiButton);
+        centerLayout = new VerticalLayout();
+        centerLayout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        centerLayout.add(idSearch, search, respond, buttonContainer, ownerGuiButton);
+
+        setSizeFull();
+        setJustifyContentMode(JustifyContentMode.CENTER);
+        setAlignItems(Alignment.CENTER);
+        add(centerLayout);
     }
 
     private void visibleOff() {
         buttonContainer.setVisible(false);
-        firstNameField.setVisible(false);
-        lastNameField.setVisible(false);
-        validLicenceCheckbox.setVisible(false);
-        update.setVisible(false);
+        centerLayout.remove(firstNameField);
+        centerLayout.remove(lastNameField);
+        centerLayout.remove(validLicenceCheckbox);
+        centerLayout.remove(update);
     }
 
     private void searchById() {
-        String value = idSearch.getValue();
         try {
             enteredId();
             OwnerDto ownerDto = ownerController.getOwnerById(enteredId());
@@ -82,8 +91,8 @@ public class CheckOwnerGui extends VerticalLayout {
             updateOwner();
             visibleOff();
         });
-        remove(ownerGuiButton);
-        add(firstNameField, lastNameField, validLicenceCheckbox, update, ownerGuiButton);
+        centerLayout.remove(ownerGuiButton);
+        centerLayout.add(firstNameField, lastNameField, validLicenceCheckbox, update, ownerGuiButton);
         buttonContainer.setVisible(false);
     }
 
@@ -105,6 +114,7 @@ public class CheckOwnerGui extends VerticalLayout {
             String newFirstName = firstNameField.getValue();
             String newLastName = lastNameField.getValue();
             boolean newValidLicence = validLicenceCheckbox.getValue();
+
             OwnerDto updatedOwner = ownerController.updateOwner(
                     new OwnerDto(newFirstName, newLastName, newValidLicence), enteredId());
             respond.setValue("Zaktualizowano właściciela o ID: " + enteredId());
