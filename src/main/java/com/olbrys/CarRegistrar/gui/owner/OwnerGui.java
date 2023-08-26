@@ -15,7 +15,7 @@ public class OwnerGui extends VerticalLayout {
     public OwnerGui() {
         Label label = new Label("Menu opcji Właściciela");
         Button listOwnerButton = new Button("Lista Właścicieli", buttonClickEvent -> navigateToOwnerList());
-        Button saveOwnerButton = new Button("Zapisz Właściciela", buttonClickEvent -> navigateToSaveOwner());
+        Button saveOwnerButton = new Button("Dodaj Właściciela", buttonClickEvent -> navigateToSaveOwner());
         Button checkOwnerButton = new Button("Opcje Właściciela", buttonClickEvent -> navigateToCheckOwner());
 
         add(welcomeText(), label, listOwnerButton, saveOwnerButton, checkOwnerButton);
