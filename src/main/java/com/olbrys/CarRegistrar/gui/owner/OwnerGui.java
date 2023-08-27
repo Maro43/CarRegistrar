@@ -23,7 +23,7 @@ public class OwnerGui extends VerticalLayout {
 
     private Div welcomeText(){
         String welcomeText = "Witaj na stronie demo. Mariusz Olbryś.<br>" +
-                "Jestem osobą, która skupia się na backend, więc frontend może sie wydawać mocno \"surowe\". <br>" +
+                "Jestem osobą, która skupia się na backend, więc frontend może sie wydawać mocno \"surowy\". <br>" +
                 "Strona ta została stworzona przy pomocy frameworka Vaadin i jest prezentacją umiejętności.<br>" +
                 "Cały projekt jest oparty o wzorzec MVC. Logika działania strony jest w package service.<br>" +
                 "Za działanie odpowiada package controller, a przesyłanie danych package DTO.<br>" +

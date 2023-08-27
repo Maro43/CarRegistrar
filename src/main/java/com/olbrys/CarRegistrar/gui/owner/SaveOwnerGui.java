@@ -21,6 +21,8 @@ public class SaveOwnerGui extends VerticalLayout {
     private final TextField lastNameField;
     private final Checkbox validLicenceCheckbox;
     private final TextArea resultArea;
+    private final Button saveButton;
+    private final Button ownerGuiButton;
 
     public SaveOwnerGui(OwnerController ownerController) {
         this.ownerController = ownerController;
@@ -28,23 +30,33 @@ public class SaveOwnerGui extends VerticalLayout {
         firstNameField = new TextField("Podaj Imię");
         lastNameField = new TextField("Podaj Nazwisko");
         validLicenceCheckbox = new Checkbox("Czy masz ważne prawo jazdy");
-        Button saveButton = new Button("Zapisz do bazy dancyh", buttonClickEvent -> saveOwner());
-        Button ownerGuiButton = new Button("Powrót do Owner Menu", buttonClickEvent -> navigateToOwnerGui());
+        saveButton = new Button("Zapisz do bazy dancyh", buttonClickEvent -> saveOwner());
+        ownerGuiButton = new Button("Powrót do Owner Menu", buttonClickEvent -> navigateToOwnerGui());
         resultArea = new TextArea("Wynik:");
+        resultArea.setReadOnly(true);
 
-        add(firstNameField, lastNameField, validLicenceCheckbox, saveButton, resultArea, ownerGuiButton);
+        setLayout();
+
+    }
+
+    private void setLayout() {
+        VerticalLayout centerLayout = new VerticalLayout();
+        centerLayout.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        centerLayout.add(firstNameField, lastNameField, validLicenceCheckbox, saveButton, resultArea, ownerGuiButton);
+
+        setSizeFull();
+        setJustifyContentMode(JustifyContentMode.CENTER);
+        setAlignItems(Alignment.CENTER);
+        add(centerLayout);
     }
 
     private void saveOwner() {
         String firstName = firstNameField.getValue();
         String lastName = lastNameField.getValue();
         boolean validLicence = validLicenceCheckbox.getValue();
-
         OwnerDto ownerDto = new OwnerDto(firstName, lastName, validLicence);
         OwnerDto savedOwner = ownerController.saveOwner(ownerDto);
-
         Long ownerId = savedOwner.getId();
-
         resultArea.setValue("Dodano użytkownika:\n"
                 + savedOwner.getFirstName() + " " + savedOwner.getLastName() + "\n" +
                 "Twoje ID: " + ownerId);
