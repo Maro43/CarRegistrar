@@ -10,7 +10,7 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-import static com.olbrys.CarRegistrar.gui.owner.NavigationGui.navigateToOwnerGui;
+import static com.olbrys.CarRegistrar.gui.owner.NavigationOwnerGui.navigateToOwnerGui;
 
 @Route("/Save_Owner")
 public class SaveOwnerGui extends VerticalLayout {

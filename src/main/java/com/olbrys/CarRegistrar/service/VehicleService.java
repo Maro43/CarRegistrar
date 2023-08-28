@@ -6,7 +6,7 @@ public interface VehicleService {
 
     VehicleDto getVehicleById(String id);
 
-    VehicleDto saveVehicle(VehicleDto vehicleDto);
+    VehicleDto saveVehicle(VehicleDto vehicleDto, Long ownerId);
 
     VehicleDto updateVehicle(VehicleDto vehicleDto);
 

@@ -22,4 +22,17 @@ public class VehicleEntity {
     private int yearProduction;
     private int yearRegistration;
     private boolean valid;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private OwnerEntity ownerCar;
+
+    public VehicleEntity(String id, String model, String series, int yearProduction, int yearRegistration, boolean valid) {
+        this.id = id;
+        this.model = model;
+        this.series = series;
+        this.yearProduction = yearProduction;
+        this.yearRegistration = yearRegistration;
+        this.valid = valid;
+    }
 }

@@ -2,7 +2,7 @@ package com.olbrys.CarRegistrar.gui.owner;
 
 import com.vaadin.flow.component.UI;
 
-public class NavigationGui {
+public class NavigationOwnerGui {
 
     public static void navigateToSaveOwner() {
         UI.getCurrent().navigate(SaveOwnerGui.class);

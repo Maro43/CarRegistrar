@@ -10,7 +10,7 @@ import com.vaadin.flow.router.Route;
 
 import java.util.List;
 
-import static com.olbrys.CarRegistrar.gui.owner.NavigationGui.navigateToOwnerGui;
+import static com.olbrys.CarRegistrar.gui.owner.NavigationOwnerGui.navigateToOwnerGui;
 
 @Route("/Owner_List")
 public class OwnerListGui extends VerticalLayout {

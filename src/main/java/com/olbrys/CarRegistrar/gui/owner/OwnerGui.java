@@ -7,7 +7,7 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-import static com.olbrys.CarRegistrar.gui.owner.NavigationGui.*;
+import static com.olbrys.CarRegistrar.gui.owner.NavigationOwnerGui.*;
 
 @Route("/")
 public class OwnerGui extends VerticalLayout {

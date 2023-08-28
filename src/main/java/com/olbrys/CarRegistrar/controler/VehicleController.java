@@ -23,8 +23,8 @@ public class VehicleController {
     }
 
     @PostMapping("/post")
-    public VehicleDto saveVehicle(VehicleDto vehicleDto){
-        return vehicleService.saveVehicle(vehicleDto);
+    public VehicleDto saveVehicle(VehicleDto vehicleDto, Long ownerId){
+        return vehicleService.saveVehicle(vehicleDto, ownerId);
     }
 
     @DeleteMapping

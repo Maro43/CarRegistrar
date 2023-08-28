@@ -1,5 +1,6 @@
 package com.olbrys.CarRegistrar.dto;
 
+import com.olbrys.CarRegistrar.entity.VehicleEntity;
 import lombok.Getter;
 import lombok.Setter;
 

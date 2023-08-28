@@ -13,7 +13,7 @@ import com.vaadin.flow.router.Route;
 
 import java.util.NoSuchElementException;
 
-import static com.olbrys.CarRegistrar.gui.owner.NavigationGui.navigateToOwnerGui;
+import static com.olbrys.CarRegistrar.gui.owner.NavigationOwnerGui.navigateToOwnerGui;
 
 @Route("/Get_Owner")
 public class CheckOwnerGui extends VerticalLayout {
