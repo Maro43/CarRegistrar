@@ -18,9 +18,11 @@ public class OwnerListGui extends VerticalLayout {
     private String listText;
 
     public OwnerListGui(OwnerController ownerController) {
-        TextArea list = new TextArea("Lista Właścicieli");
+        TextArea list = new TextArea("Lista Właścicieli:");
+        list.setReadOnly(true);
         List<OwnerDto> ownerList = ownerController.getList();
         listText = generateListText(ownerList);
+        list.getStyle().set("width", "600px");
         list.setValue(listText);
         Button sortedById = new Button("Sortuj po ID", buttonClickEvent -> {
             listText = generateListText(ownerController.getSortedByIdList());
@@ -31,19 +33,19 @@ public class OwnerListGui extends VerticalLayout {
             list.setValue(listText);
         });
         Button goBack = new Button("Menu", buttonClickEvent -> navigateToOwnerGui());
-        HorizontalLayout buttonContainer = new HorizontalLayout(sortedById, sortedByName, goBack);
+        VerticalLayout buttonLayout = new VerticalLayout(sortedById, sortedByName, goBack);
+        HorizontalLayout contentLayout = new HorizontalLayout(buttonLayout, list);
 
-        add(buttonContainer, list, goBack);
-
+        add(contentLayout);
     }
 
     private String generateListText(List<OwnerDto> ownerList) {
         StringBuilder text = new StringBuilder();
         for (OwnerDto owner : ownerList) {
             text.append("Id: ").append(owner.getId()).append("\n");
-            text.append("Imię: ").append(owner.getFirstName()).append("\n");
-            text.append("Nazwisko: ").append(owner.getLastName()).append("\n");
-            text.append("Czy ma ważne prawo jazdy: ").append(owner.isValidLicence()).append("\n\n");
+            text.append("Właściciel: ").append(owner.getFirstName()).append(" ");
+            text.append(owner.getLastName()).append("\n");
+            text.append("Prawo jazdy: ").append(owner.isValidLicence() ? "Tak" : "Nie").append("\n\n");
         }
         return text.toString();
     }
