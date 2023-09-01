@@ -27,6 +27,11 @@ public class VehicleServiceImp implements VehicleService {
     }
 
     @Override
+    public Boolean checkIdInDB(String id) {
+        return vehicleRepository.findById(id).isPresent();
+    }
+
+    @Override
     public VehicleDto saveVehicle(VehicleDto vehicleDto, Long ownerId) {
         Optional<VehicleEntity> existingVehicle = vehicleRepository.findById(vehicleDto.getId());
         if (existingVehicle.isPresent()) {

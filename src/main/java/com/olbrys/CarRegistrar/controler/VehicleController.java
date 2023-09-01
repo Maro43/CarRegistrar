@@ -17,14 +17,17 @@ public class VehicleController {
         return vehicleService.getVehicleById(id);
     }
 
-    @PutMapping
-    public VehicleDto updateVehicle(VehicleDto vehicleDto){
-        return vehicleService.updateVehicle(vehicleDto);
-    }
+    @GetMapping("/checkid")
+    public Boolean checkIdInDB(String id){return vehicleService.checkIdInDB(id);}
 
     @PostMapping("/post")
     public VehicleDto saveVehicle(VehicleDto vehicleDto, Long ownerId){
         return vehicleService.saveVehicle(vehicleDto, ownerId);
+    }
+
+    @PutMapping
+    public VehicleDto updateVehicle(VehicleDto vehicleDto){
+        return vehicleService.updateVehicle(vehicleDto);
     }
 
     @DeleteMapping
