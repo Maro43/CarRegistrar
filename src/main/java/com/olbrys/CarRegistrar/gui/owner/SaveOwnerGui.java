@@ -31,7 +31,7 @@ public class SaveOwnerGui extends VerticalLayout {
         lastNameField = new TextField("Podaj Nazwisko");
         validLicenceCheckbox = new Checkbox("Czy masz ważne prawo jazdy");
         saveButton = new Button("Zapisz do bazy dancyh", buttonClickEvent -> saveOwner());
-        ownerGuiButton = new Button("Powrót do Owner Menu", buttonClickEvent -> navigateToOwnerGui());
+        ownerGuiButton = new Button("Powrót do Menu", buttonClickEvent -> navigateToOwnerGui());
         resultArea = new TextArea("Wynik:");
         resultArea.setReadOnly(true);
 

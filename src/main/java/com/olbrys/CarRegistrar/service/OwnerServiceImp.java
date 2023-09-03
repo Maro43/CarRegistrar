@@ -65,8 +65,16 @@ public class OwnerServiceImp implements OwnerService {
     @Override
     public OwnerDto updateOwner(OwnerDto ownerDto, Long id) {
         OwnerEntity ownerEntity = ownerRepository.findById(id).orElse(null);
-        ownerEntity.setFirstName(ownerDto.getFirstName());
-        ownerEntity.setLastName(ownerDto.getLastName());
+        String newFirstName = ownerDto.getFirstName();
+        if (newFirstName.isEmpty()) {
+            newFirstName = ownerEntity.getFirstName();
+        }
+        ownerEntity.setFirstName(newFirstName);
+        String newLastName = ownerDto.getLastName();
+        if (newLastName.isEmpty()) {
+            newLastName = ownerEntity.getLastName();
+        }
+        ownerEntity.setLastName(newLastName);
         ownerEntity.setValidLicence(ownerDto.isValidLicence());
         OwnerEntity save = ownerRepository.save(ownerEntity);
         return new OwnerDto(save);

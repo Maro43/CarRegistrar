@@ -48,7 +48,7 @@ public class CheckOwnerGui extends VerticalLayout {
         Button updateOn = new Button("Aktualizuj Dane", buttonClickEvent -> addUpdate());
         buttonContainer = new HorizontalLayout(delete, updateOn);
         buttonContainer.setVisible(false);
-        ownerGuiButton = new Button("Powrót do menu", buttonClickEvent -> navigateToOwnerGui());
+        ownerGuiButton = new Button("Powrót do Menu", buttonClickEvent -> navigateToOwnerGui());
 
         setLayout();
     }

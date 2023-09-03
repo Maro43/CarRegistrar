@@ -32,7 +32,7 @@ public class OwnerListGui extends VerticalLayout {
             listText = generateListText(ownerController.getSortedByNameList());
             list.setValue(listText);
         });
-        Button goBack = new Button("Menu", buttonClickEvent -> navigateToOwnerGui());
+        Button goBack = new Button("Powrót do Menu", buttonClickEvent -> navigateToOwnerGui());
         VerticalLayout buttonLayout = new VerticalLayout(sortedById, sortedByName, goBack);
         HorizontalLayout contentLayout = new HorizontalLayout(buttonLayout, list);
 
